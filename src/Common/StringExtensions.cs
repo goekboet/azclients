@@ -3,7 +3,7 @@ using System.Linq;
 using System.Text;
 using Newtonsoft.Json.Linq;
 
-namespace clientCreds.StringExtensions
+namespace Common.StringExtensions
 {
     public static class StringExtensions
     {

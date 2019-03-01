@@ -3,7 +3,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
-using resourceOwn.StringExtensions;
+using Common.StringExtensions;
 
 namespace resourceOwn
 {
