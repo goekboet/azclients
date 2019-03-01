@@ -9,7 +9,7 @@ namespace resourceOwn
 {
     class Program
     {
-        const string tokenEndpoint = "https://login.microsoftonline.com/c4407ff9-b5f0-4ce7-9696-53c8758fcc25/oauth2/v2.0/token";
+        static string baseUrl(string tenant) => $"https://login.microsoftonline.com/{tenant}/oauth2/v2.0/token";
 
         static string esc(string s) => Uri.EscapeDataString(s); 
         static string queryV2(
@@ -46,9 +46,10 @@ namespace resourceOwn
 
         static Task<HttpResponseMessage> Auth(
             HttpClient c,
+            string baseurl,
             string query) =>
             c.PostAsync(
-                tokenEndpoint,
+                baseurl,
                 new StringContent(
                     query,
                     Encoding.UTF8,
@@ -58,11 +59,11 @@ namespace resourceOwn
         {
             bool hasFirst() => args.Length > 1;
             bool rightCount() {
-                switch (args[0])
+                switch (args[1])
                 {
                     case "V1":
                     case "V2":
-                        return args.Length == 5 + 1;
+                        return args.Length == 7 + 1;
                     default:
                         return false;
                 }
@@ -72,19 +73,20 @@ namespace resourceOwn
         }
         static async Task<int> Main(string[] args)
         {
-            //Console.WriteLine(string.Join(" ", args));
-
             if (!ValidArgs(args))
             {
+                Console.WriteLine($"{string.Join(" ", args)}");
                 Console.Error.WriteLine(
 @"usage: resourceOwn version [Args]
-version must be either V1 or V2. If it is V1 five arguments must follow:
+version must be either V1 or V2. If it is V1 six arguments must follow:
+- tenantId
 - resourceId
 - clientId
 - userName
 - passWord
 - scope (space separated)
-If it is V2 five arguments must follow:
+If it is V2 six arguments must follow:
+- tenantId
 - clientId
 - clientSecret
 - userName
@@ -94,14 +96,16 @@ If it is V2 five arguments must follow:
             }
 
             string query;
-            if (args[0] == "V1")
+            if (args[1] == "V1")
             {
-                query = queryV1(args[1],args[2], args[3], args[4], args[5]);
+                query = queryV1(args[3],args[4], args[5], args[6], args[7]);
             }
             else
             {
-                query = queryV2(args[1],args[2], args[3], args[4], args[5]);
-            } 
+                query = queryV2(args[3],args[4], args[5], args[6], args[7]);
+            }
+
+            var baseurl = baseUrl(args[2]); 
             var output = "";
 
             using (var client = new HttpClient())
@@ -110,7 +114,7 @@ If it is V2 five arguments must follow:
 
                 try
                 {
-                    using (var response = await Auth(client, query))
+                    using (var response = await Auth(client, baseurl, query))
                     {
                         var status = $"{response.StatusCode} {response.ReasonPhrase}";
                         var content = await response.Content.ReadAsStringAsync(); 
