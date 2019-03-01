@@ -1,0 +1,78 @@
+{
+	"id": "543f12b8-3563-49f7-ab05-7dc8d13142a0",
+	"acceptMappedClaims": null,
+	"accessTokenAcceptedVersion": 2,
+	"allowPublicClient": null,
+	"appId": "2e653b37-20f8-4b13-ad3c-59974daa1468",
+	"appRoles": [],
+	"oauth2AllowUrlPathMatching": false,
+	"createdDateTime": "2019-02-25T21:37:59Z",
+	"groupMembershipClaims": null,
+	"identifierUris": [ ],
+	"informationalUrls": {
+		"termsOfService": null,
+		"support": null,
+		"privacy": null,
+		"marketing": null
+	},
+	"keyCredentials": [],
+	"knownClientApplications": [],
+	"logoUrl": null,
+	"logoutUrl": null,
+	"name": "corporate-web",
+	"oauth2AllowIdTokenImplicitFlow": false,
+	"oauth2AllowImplicitFlow": false,
+	"oauth2Permissions": [],
+	"oauth2RequirePostResponse": false,
+	"optionalClaims": null,
+	"orgRestrictions": [],
+	"parentalControlSettings": {
+		"countriesBlockedForMinors": [],
+		"legalAgeGroupRule": "Allow"
+	},
+	"passwordCredentials": [
+		{
+			"customKeyIdentifier": null,
+			"endDate": "2020-02-28T21:48:49.457Z",
+			"keyId": "8c743c74-85d7-47a2-82a5-83c28b077b23",
+			"startDate": "2019-02-28T21:49:37.092Z",
+			"value": null,
+			"createdOn": "2019-02-28T21:49:37.5671617Z",
+			"hint": "}_}",
+			"displayName": "dev"
+		}
+	],
+	"preAuthorizedApplications": [],
+	"publisherDomain": "erikgoekgmail.onmicrosoft.com",
+	"replyUrlsWithType": [
+		{
+			"url": "https://corporate-web/auth",
+			"type": "Web"
+		}
+	],
+	"requiredResourceAccess": [
+		{
+			"resourceAppId": "b0b0407d-b908-4e23-a3ce-2bd59476fbd4",
+			"resourceAccess": [
+				{
+					"id": "972b5b6d-891a-42b3-9346-ef3da6d24080",
+					"type": "Role"
+				}
+			]
+		},
+		{
+			"resourceAppId": "00000003-0000-0000-c000-000000000000",
+			"resourceAccess": [
+				{
+					"id": "e1fe6dd8-ba31-4d61-89e7-88639da4683d",
+					"type": "Scope"
+				}
+			]
+		}
+	],
+	"samlMetadataUrl": null,
+	"signInUrl": null,
+	"signInAudience": "AzureADMyOrg",
+	"tags": [],
+	"tokenEncryptionKeyId": null
+}
